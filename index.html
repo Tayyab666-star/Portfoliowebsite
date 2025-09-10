@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tayyab Nisar | Generative AI Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling portfolio. The structure is thematic to tell a compelling story: Hero (introduction), About (narrative), Interactive Achievements Timeline (proof), Skills Chart (technical depth), My Approach (problem-solving), and Contact (call-to-action). This non-linear, interactive structure is chosen over a static CV layout to engage the user, encourage exploration of key achievements, and better showcase the candidate's dynamic skill set and professional narrative. -->
+    <!-- Visualization & Content Choices: 1. Achievements List -> Goal: Compare/Organize -> Viz: Interactive Timeline -> Interaction: Click to reveal details -> Justification: Creates an engaging narrative of career progression, more compelling than a static list -> Method: HTML/JS. 2. Skills List -> Goal: Compare/Organize -> Viz: Horizontal Bar Chart -> Interaction: Tooltips on hover -> Justification: Clearly visualizes strengths and areas of expertise in a structured, easily comparable format -> Library: Chart.js/Canvas. 3. Value Proposition Text -> Goal: Inform -> Viz: Icon-driven Info Cards -> Interaction: Click to expand -> Justification: Breaks down complex ideas into digestible, visually appealing chunks -> Method: HTML/JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFDFD;
+            color: #1a202c;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #CBD5E0;
+            border: 4px solid #FDFDFD;
+        }
+        .timeline-item.active::before {
+            background-color: #4A5568;
+        }
+        .smooth-scroll {
+             scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-gray-800">Tayyab Nisar</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="text-gray-600 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#achievements" class="text-gray-600 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Achievements</a>
+                        <a href="#skills" class="text-gray-600 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#contact" class="bg-gray-800 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Generative AI Developer & Innovator</h1>
+                        <p class="mt-4 text-lg text-gray-600">Transforming complex ideas into practical, high-impact AI solutions. Currently shaping the future of AI at Nexus AI Digital in London.</p>
+                        <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                            <a href="#achievements" class="bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-300">Explore My Work</a>
+                            <a href="#contact" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition duration-300">Get in Touch</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="images/Tayyab Nisar.png" alt="Tayyab Nisar" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl border-4 border-white">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="bg-gray-50 py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-gray-800">About Me</h2>
+                <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+                    I am a Generative AI Application Developer, Expert Prompt Engineer, and AI Innovator. My passion lies in bridging the gap between cutting-edge research and real-world business applications. I specialize in building production-ready AI chatbots and web apps that automate tasks, reduce costs, and drive efficiency. My work isn't about demos; it's about delivering robust, scalable solutions that generate tangible impact.
+                </p>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">My Journey & Achievements</h2>
+                <p class="text-center mt-4 text-lg text-gray-600">An interactive look at key milestones that have shaped my expertise.</p>
+                <div class="mt-12 flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div id="timeline-buttons" class="relative border-l-2 border-gray-200 pl-8 space-y-8">
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 bg-gray-50 rounded-lg p-8 transition-all duration-500 min-h-[250px]">
+                        <div id="timeline-content">
+                            <h3 id="timeline-title" class="text-2xl font-bold text-gray-800"></h3>
+                            <p id="timeline-description" class="mt-2 text-gray-600"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-gray-50 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">Technical Expertise</h2>
+                <p class="text-center mt-4 text-lg text-gray-600">A visual overview of the tools and technologies I use to build powerful AI solutions.</p>
+                <div class="mt-12 chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">Featured Projects</h2>
+                <p class="text-center mt-4 text-lg text-gray-600">A showcase of my most impactful and innovative projects.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Portfolio Website</h3>
+                        <p class="mt-2 text-gray-600">My showcase of projects and skills.</p>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">TrafficWise-AI</h3>
+                        <p class="mt-2 text-gray-600">AI-powered traffic analytics and optimization.</p>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Admissions Dashboard</h3>
+                        <p class="mt-2 text-gray-600">Smart dashboards for education analytics.</p>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">BloodPressureDetectionSystem</h3>
+                        <p class="mt-2 text-gray-600">A Streamlit application that estimates blood pressure using computer vision and provides AI-powered personalized health recommendations.</p>
+                        <ul class="mt-4 text-sm text-gray-600 list-disc pl-5">
+                            <li>Webcam-based blood pressure estimation</li>
+                            <li>Comprehensive health questionnaire</li>
+                            <li>AI-powered personalized health recommendations using OpenAI</li>
+                            <li>Interactive and modern user interface</li>
+                            <li>Health tracking tools</li>
+                        </ul>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Rama HackNation</h3>
+                        <p class="mt-2 text-gray-600">A comprehensive CV/Resume analysis platform leveraging AI and machine learning to match candidates with job descriptions.</p>
+                        <ul class="mt-4 text-sm text-gray-600 list-disc pl-5">
+                            <li>AI-powered CV analysis using OpenAI embeddings and DSPy</li>
+                            <li>Semantic search with Milvus vector database</li>
+                            <li>Interactive chat interface for candidate analysis</li>
+                            <li>Dynamic aspect weighting for scoring</li>
+                        </ul>
+                    </div>
+                    <!-- Project 6 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">TrafficWise AI Planner</h3>
+                        <p class="mt-2 text-gray-600">An advanced AI-powered tool for traffic route optimization and urban congestion solutions.</p>
+                        <ul class="mt-4 text-sm text-gray-600 list-disc pl-5">
+                            <li>Real-time traffic analysis and route optimization</li>
+                            <li>Interactive traffic maps using Folium</li>
+                            <li>AI chat assistant for urban planning</li>
+                            <li>Built with Streamlit and Python</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-gray-800">Let's Build the Future Together</h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    Whether you’re a startup building your first AI feature or an established team scaling AI-powered products, I bring clarity, speed, and deep expertise. Let’s connect if you want AI solutions that work.
+                </p>
+                <div class="mt-8 flex justify-center gap-8">
+                    <a href="mailto:tnasir536@gmail.com" class="text-gray-700 hover:text-gray-900 font-semibold text-lg">
+                        <span class="text-2xl">📧</span> tnasir536@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/tayyabnisar/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900 font-semibold text-lg">
+                       <span class="text-2xl">🔗</span> LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Tayyab Nisar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Interactive Timeline Logic ---
+            const achievementsData = [
+                {
+                    year: '2025-May',
+                    title: 'Top Performer, Harvard CS50 Puzzle Day',
+                    description: 'Recognized for exceptional problem-solving and algorithmic thinking in a high-pressure, competitive environment against global talent. This achievement highlights my ability to devise innovative solutions to complex challenges.'
+                },
+                {
+                    year: '2024-December',
+                    title: 'National Hackathon Winner',
+                    description: 'Led a team to victory in a national-level hackathon by developing a production-ready AI application from scratch in under 48 hours, showcasing rapid prototyping and effective teamwork.'
+                },
+                 {
+                    year: '2025-July',
+                    title: 'Participant, MIT Hackathon',
+                    description: 'Collaborated with leading MIT researchers and students on a cutting-edge AI project, gaining exposure to advanced research methodologies and contributing to a forward-thinking AI solution.'
+                },
+                {
+                    year: '2024',
+                    title: 'Top Performer, Generative AI Hackathon',
+                    description: 'Awarded top performer status for building a highly accurate and efficient Generative AI model that solved a specific business use case, demonstrating deep expertise in model fine-tuning and application.'
+                },
+                 {
+                    year: '2024-Present',
+                    title: 'International Hackathon Participant',
+                    description: 'Competed on a global stage, developing an AI-powered solution for a real-world problem. This experience broadened my perspective on global tech challenges and cross-cultural collaboration.'
+                }
+            ];
+
+            const timelineButtonsContainer = document.getElementById('timeline-buttons');
+            const timelineTitle = document.getElementById('timeline-title');
+            const timelineDescription = document.getElementById('timeline-description');
+
+            achievementsData.forEach((item, index) => {
+                const button = document.createElement('div');
+                button.className = 'timeline-item relative cursor-pointer';
+                button.dataset.index = index;
+                button.innerHTML = `
+                    <h4 class="font-bold text-lg text-gray-700">${item.title}</h4>
+                    <p class="text-sm text-gray-500">${item.year}</p>
+                `;
+                timelineButtonsContainer.appendChild(button);
+            });
+
+            function updateTimelineContent(index) {
+                const item = achievementsData[index];
+                timelineTitle.textContent = item.title;
+                timelineDescription.textContent = item.description;
+
+                document.querySelectorAll('.timeline-item').forEach((btn, i) => {
+                    if (i == index) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+            
+            timelineButtonsContainer.addEventListener('click', (e) => {
+                const target = e.target.closest('.timeline-item');
+                if (target) {
+                    updateTimelineContent(target.dataset.index);
+                }
+            });
+
+            updateTimelineContent(0);
+
+            // --- Skills Chart Logic ---
+            const skillsCtx = document.getElementById('skillsChart').getContext('2d');
+            const skillsData = {
+                labels: ['Prompt Engineering', 'LLM Fine-Tuning (LoRA/QLoRA)', 'Retrieval-Augmented Generation (RAG)', 'AI Infrastructure & Deployment', 'Vector Embeddings & Databases', 'Web App & Chatbot Development', 'No-Code Automation (n8n, Zapier)'],
+                datasets: [{
+                    label: 'Expertise Level',
+                    data: [95, 90, 88, 85, 92, 93, 80],
+                    backgroundColor: 'rgba(74, 85, 104, 0.8)',
+                    borderColor: 'rgba(45, 55, 72, 1)',
+                    borderWidth: 1,
+                }]
+            };
+
+            const skillsChart = new Chart(skillsCtx, {
+                type: 'bar',
+                data: skillsData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1a202c',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 4,
+                            displayColors: false,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                        y: {
+                           grid: {
+                                display: false,
+                                drawBorder: false
+                           },
+                           ticks: {
+                                font: {
+                                    size: 14,
+                                    weight: '500'
+                                },
+                                color: '#4A5568'
+                           }
+                        }
+                    }
+                }
+            });
+
+            // --- Smooth Scrolling for Nav Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
